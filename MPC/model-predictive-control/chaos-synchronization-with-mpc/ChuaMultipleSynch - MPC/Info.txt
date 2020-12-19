@@ -1,0 +1,4 @@
+ode contains two different chaotic system. 
+master: chua's circuit with polynomial non linearity 
+slavel: Lorenz attractor
+

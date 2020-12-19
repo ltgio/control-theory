@@ -1,0 +1,3 @@
+LIBRARY Chua_MPC_sfun.mexw64
+EXPORTS
+mexFunction

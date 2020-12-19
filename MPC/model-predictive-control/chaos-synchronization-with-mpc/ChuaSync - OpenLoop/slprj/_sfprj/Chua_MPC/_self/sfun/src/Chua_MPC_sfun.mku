@@ -1,0 +1,86 @@
+#--------------------------- Tool Specifications -------------------------
+#
+# Modify the following macros to reflect the tools you wish to use for
+# compiling and linking your code.
+#
+CC = /home/gianni/Matlab_2014b/bin/mex
+LD = $(CC)
+ 
+MACHINE     = Chua_MPC
+TARGET      = sfun
+CHART_SRCS   = c2_Chua_MPC.c c3_Chua_MPC.c
+MACHINE_SRC  = Chua_MPC_sfun.c
+MACHINE_REG = Chua_MPC_sfun_registry.c
+MAKEFILE    = Chua_MPC_sfun.mku
+MATLAB_ROOT  = /home/gianni/Matlab_2014b
+BUILDARGS   = 
+#------------------------------ Include/Lib Path ------------------------------
+ 
+USER_INCLUDES = 
+AUX_INCLUDES = 
+MLSLSF_INCLUDES  = \
+    -I"/home/gianni/Matlab_2014b/extern/include" \
+    -I"/home/gianni/Matlab_2014b/simulink/include" \
+    -I"/home/gianni/Matlab_2014b/stateflow/c/mex/include" \
+    -I"/home/gianni/Matlab_2014b/rtw/c/src" \
+    -I"/home/gianni/Dropbox/Current_Work/Summer_School_NOC_15/Chua/ChuaSync - OpenLoop/slprj/_sfprj/Chua_MPC/_self/sfun/src" 
+
+THIRD_PARTY_INCLUDES = 
+
+INCLUDE_PATH = $(USER_INCLUDES) $(AUX_INCLUDES) $(MLSLSF_INCLUDES) $(COMPILER_INCLUDES) $(THIRD_PARTY_INCLUDES)
+ 
+#----------------- Compiler and Linker Options --------------------------------
+ 
+# Optimization Options
+ 
+CC_OPTS = -O 
+CPP_REQ_DEFINES = -DMATLAB_MEX_FILE
+ 
+# Uncomment this line to move warning level to W4
+# cflags = $(cflags:W3=W4)
+CFLAGS = $(CC_OPTS) $(CPP_REQ_DEFINES) $(INCLUDE_PATH)
+ 
+LDFLAGS =  
+ 
+AUXLDFLAGS = 
+#----------------------------- Source Files -----------------------------------
+ 
+REQ_SRCS  = $(MACHINE_SRC) $(MACHINE_REG) $(CHART_SRCS)
+
+USER_ABS_OBJS =
+
+AUX_ABS_OBJS =
+THIRD_PARTY_OBJS =
+
+REQ_OBJS = $(REQ_SRCS:.cpp=.o)
+REQ_OBJS2 = $(REQ_OBJS:.c=.o)
+OBJS = $(REQ_OBJS2) $(USER_ABS_OBJS) $(AUX_ABS_OBJS) $(THIRD_PARTY_OBJS)
+OBJLIST_FILE = Chua_MPC_sfun.mol
+SFCLIB = 
+AUX_LNK_OBJS = 
+USER_LIBS = 
+LINK_MACHINE_LIBS = 
+TMWLIB = -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwsf_runtime -L/home/gianni/Matlab_2014b/bin/glnxa64 -lfixedpoint -L/home/gianni/Matlab_2014b/bin/glnxa64 -lut -L/home/gianni/Matlab_2014b/bin/glnxa64 -lemlrt -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwmathutil -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwblas -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwsl_log_load_blocks -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwsimulink -L/home/gianni/Matlab_2014b/bin/glnxa64 -lmwipp 
+PARLIB = 
+  MAPCSF = /home/gianni/Matlab_2014b/tools/glnxa64/mapcsf
+   # RUN_MAPCSF_ON_UNIX is defined only if MAPCSF exists on this platform.
+   ifneq ($(wildcard $(MAPCSF)),) # run MAPCSF if it exists on this platform
+      RUN_MAPCSF_ON_UNIX =  /home/gianni/Matlab_2014b/tools/glnxa64/mapcsf $@
+   endif
+THIRD_PARTY_LIBS = 
+ 
+#--------------------------------- Rules --------------------------------------
+ 
+MEX_FILE_NAME = $(MACHINE)_$(TARGET).mexa64
+ 
+ $(MEX_FILE_NAME): $(MAKEFILE) $(OBJS) $(SFCLIB) $(AUX_LNK_OBJS) $(USER_LIBS)
+	@echo ### Linking ...
+	$(CC) -silent LDFLAGS="\$$LDFLAGS $(AUXLDFLAGS)" -output $(MEX_FILE_NAME) $(OBJS) $(AUX_LNK_OBJS) $(USER_LIBS) $(LINK_MACHINE_LIBS) $(SFCLIB) $(TMWLIB) $(PARLIB) $(IPPLIB) $(THIRD_PARTY_LIBS)
+	$(RUN_MAPCSF_ON_UNIX)
+
+%.o :    %.c
+	$(CC) -c $(CFLAGS) $<
+
+%.o :    %.cpp
+	$(CC) -c $(CFLAGS) $<
+
