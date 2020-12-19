@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title: inverted pendulum with NMPC  %
+% Author: Giovanni Licitra            %
+% Data: 28/11/2014                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 n=3;      %number of state
 q=0.1;    %std of process 
@@ -14,17 +20,17 @@ s=[0;0;1];                                % initial state
 x=s+q*randn(3,1); %initial state          % initial state with noise
 x2=x;
 P = eye(n);   
-P2=P;% initial state covraiance 
+P2=P;% initial state covariance 
 
-N=300;                                     % total dynamic steps
-xV = zeros(n,N);          %estmate        % allocate memory
-sV = zeros(n,N);          %actual
+N=300;                                    % total dynamic steps
+xV = zeros(n,N);                          % estimate vector 
+sV = zeros(n,N);                          % actual
 zV = zeros(1,N);
 
 xV2 = zeros(n,N);  
 
-L=numel(x);                                 %numer of states
-% m=numel(z);                                 %numer of measurements
+L=numel(x);                               % number of states
+% m=numel(z);                             % number of measurements
 alpha  = 1e-3;   % first scaling parameter
 beta   = 2;   % second scalinng parameter for gaussian distribution
 k      = 0;   % third scaling parameter
