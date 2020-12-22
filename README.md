@@ -3,31 +3,49 @@
 
 Control theory deals with the control of dynamical systems in engineered processes and machines. The objective is to develop a control model for controlling such systems using a control action in an optimum manner without delay or overshoot and ensuring control stability.
 
-### index
-```
+### Index
+
 +-- control-theory
-|   +-- MPC 
+|   +-- MPC
 |   |    +--- command-governor
 |   |    +--- model-predictive-control
 |   |    +--- reference-governor/servo-mechanism
 |   +-- automatic-controls
-|   |    +--- helpers-1.py
-|   |    +--- helpers-2.py
-|   |    +---    .....
+|   |    +--- DLQR-design
+|   |    +--- LQI-design
+|   |    +--- LQI-gain-scheduling
+|   |    +--- PID-gain-scheduling
+|   |    +--- aerospace-feedbacks
+|   |    +--- classical-controls
+|   |    +--- explicit-and-implicit-integrators
 |   +-- differential-algebraic-equation
-|   |    +---  metric-1.py
-|   |    +---  metric-2.py
-|   |    +---    .....
+|   |    +---  consistency
+|   |    +---  optimization
+|   |    +---  simulation
 |   +-- linearisation-simulation
-|   |    +--- feature-data-set-1.json
-|   |    +--- feature-data-set-2.json
-|   |    +---    .....
+|   |    +--- symbolic-linearization
 |   +-- miscellaneous-casADi
+|   |    +---  HSL-library
+|   |    +---  code-generation
+|   |    +---  demo
+|   |    +---  doc
+|   |    +---  simulink-interface
 |   +-- newton-methods
 |   +-- nmpc-acado
+|   |    +---  inverted-pendulum-set-point
+|   |    +---  magnetic-levitator
+|   |    +---  vertical-take-off-landing-aircraft
 |   +-- non-linear-programming
 |   +-- optimal-control
+|   |    +---  direct-collocation
+|   |    +---  direct-multiple-shooting
+|   |    +---  direct-single-multiple-shooting-fmincon
+|   |    +---  direct-single-shooting
+|   |    +---  dynamic-programming
 |   +-- parameter-estimation
+|   |    +---  casadi
+|   |    +---  matlab
+|   |    +---  optistack
 |   +-- virtual-sensing
 |   +-- .gitignore
 |   +-- README.md
